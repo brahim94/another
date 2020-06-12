@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id='corp_view_form' model='ir.ui.view'>
+            <field name="name">corp.view.form</field>
+            <field name="model">egov_ma.hr.corp</field>
+            <field name="arch" type="xml">
+               <form>
+               <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="ar_name"/>
+                        </group>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+</record>
+
+<record id="corp_list_view_tree" model="ir.ui.view">
+        <field name="name">corp.list.tree</field>
+        <field name="model">egov_ma.hr.corp</field>
+        <field name="arch" type="xml">
+            <tree>
+          <field name="name"/>
+          <field name="ar_name"/>
+            </tree>
+        </field>
+    </record>
+
+<record id="action_egov_ma_hr_corp" model="ir.actions.act_window">
+    <field name="name">Corps</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">egov_ma.hr.corp</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+ <menuitem
+            id="menu_view_hr_corp_form"
+            name="Corp"
+            action="action_egov_ma_hr_corp"
+            parent="hr.menu_human_resources_configuration"
+            sequence="102"
+            groups="hr.group_hr_manager"/>
+
+
+<record id='grade_view_form' model='ir.ui.view'>
+            <field name="name">grade.view.form</field>
+            <field name="model">egov_ma.hr.grade</field>
+            <field name="arch" type="xml">
+               <form>
+               <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="ar_name"/>
+                        </group>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+</record>
+
+<record id="grade_list_view_tree" model="ir.ui.view">
+        <field name="name">grade.list.tree</field>
+        <field name="model">egov_ma.hr.grade</field>
+        <field name="arch" type="xml">
+            <tree>
+          <field name="name"/>
+          <field name="ar_name"/>
+            </tree>
+        </field>
+    </record>
+
+<record id="action_egov_ma_hr_grade" model="ir.actions.act_window">
+    <field name="name">Grade</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">egov_ma.hr.grade</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+ <menuitem
+            id="menu_view_hr_grade_form"
+            name="Grade"
+            action="action_egov_ma_hr_grade"
+            parent="hr.menu_human_resources_configuration"
+            sequence="103"
+            groups="hr.group_hr_manager"/>
+
+<record id="view_hr_employee_inherit" model="ir.ui.view">
+                <field name="name">hr.employee.form.inherit</field>
+                <field name="model">hr.employee</field>
+                <field name="inherit_id" ref="hr.view_employee_form"/>
+                <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group[1]/group[2]/field[@name='grade']" position="after">
+                        <field name="nu_cin"/>
+                        <field name="num_ppr"/>
+                    </xpath>      
+                </field>
+    </record>
+
+
+</odoo>

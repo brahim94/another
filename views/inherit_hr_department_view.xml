@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="hr_department_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.department.view.form.inherit</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="arch" type="xml">
+
+                <field name="name" position="attributes">
+                    <attribute name="string">Unité de fonctionnement</attribute>
+                </field>
+
+                <field name="parent_id" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_type_root', '!=', False)]}</attribute>
+                </field>
+                <field name="parent_id" position="attributes">
+                    <attribute name="domain">['|',('type_unit_id.niveau','=','middle'),('type_unit_id.niveau','=','root')]</attribute>
+                </field>
+
+                <xpath expr="//field[@name='parent_id']" position="before">
+                    <field name="type_unit_id"/>
+                    <field name="is_type_root" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="ar_operating_unit"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="event_event_sequence_number" model="ir.sequence">
+            <field name="name">Event Sequence</field>
+            <field name="code">event.event.sequence</field>
+            <field name="prefix">EV-</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
+
+        <record id="event_trajets_sequence_number" model="ir.sequence">
+            <field name="name">Event Trajets Sequence</field>
+            <field name="code">event.trajets.sequence</field>
+            <field name="prefix">ET-</field>
+            <field name="padding">5</field>
+            <field eval="1" name="number_increment"/>
+        </record>
+    </data>
+</odoo>

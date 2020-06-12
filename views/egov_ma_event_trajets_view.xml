@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="egov_ma_event_trajets_form_view" model="ir.ui.view">
+        <field name="name">egov_ma.event.trajets.form.view</field>
+        <field name="model">egov_ma.event.trajets</field>
+        <field name="arch" type="xml">
+            <form string="Type d’unité">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="starting_point_id"/>
+                            <field name="arrival_point_id"/>
+                        </group>
+                        <group>
+                            <field name='type'/>
+                            <field name='km_estimated'/>
+                            <field name='charge_auto'/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="egov_ma_event_trajets_tree" model="ir.ui.view">
+            <field name="name">egov_ma.event.trajets.tree</field>
+            <field name="model">egov_ma.event.trajets</field>
+            <field name="arch" type="xml">
+                <tree string="Type d’unité">
+                    <field name="name"/>
+                    <field name="starting_point_id"/>
+                    <field name="arrival_point_id"/>
+                    <field name="type"/>
+                    <field name='km_estimated'/>
+                    <field name='charge_auto'/>
+                </tree>
+            </field>
+    </record>
+
+
+    <record id="action_egov_ma_event_trajets" model="ir.actions.act_window">
+        <field name="name">Trajets</field>
+        <field name="res_model">egov_ma.event.trajets</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <menuitem
+                id="menu_view_hr_trajets_form"
+                name="Trajets"
+                action="action_egov_ma_event_trajets"
+                parent="event.menu_event_configuration"
+                sequence="103"
+                groups="base.group_no_one"/>
+
+</odoo>

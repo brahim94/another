@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="egov_ma_department_type_list_view" model="ir.ui.view">
+        <field name="name">egov_ma.department.type.tree</field>
+        <field name="model">egov_ma.department.type</field>
+        <field name="arch" type="xml">
+            <tree string="Type d’unité">
+                <field name='name'/>
+                <field name='ar_name'/>
+                <field name='niveau'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="egov_ma_department_type_form_view" model="ir.ui.view">
+        <field name="name">egov_ma.department.type.form.view</field>
+        <field name="model">egov_ma.department.type</field>
+        <field name="arch" type="xml">
+            <form string="Type d’unité">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="Nom"/>
+                            <field name='niveau'/>
+                        </group>
+                        <group>
+                            <field name='ar_name' placeholder="الإسم"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_egov_ma_department_type" model="ir.actions.act_window">
+        <field name="name">Type d’unité</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">egov_ma.department.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="menu_view_employee_department_type_form"
+            name="Type d’unité"
+            action="action_egov_ma_department_type"
+            parent="hr.menu_human_resources_configuration"
+            sequence="1"
+            groups="hr.group_hr_manager"/>
+
+</odoo>
