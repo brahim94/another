@@ -22,6 +22,7 @@
         'views/egov_ma_event_trajets_view.xml',
         'views/inherit_hr_job_view.xml',
         'views/corp_grade_view.xml',
+        'views/fleet_vignette.xml',
     ],
     'license': 'OPL-1',
 }

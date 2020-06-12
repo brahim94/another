@@ -14,7 +14,6 @@ class HrEmployee(models.Model):
     grade = fields.Many2one('egov_ma.hr.grade', string='Grade')
     nu_cin = fields.Char('N° de CIN')
     num_ppr = fields.Char('N °PPR ')
-    objet_txt = fields.Text('Objet')
 
 
     @api.onchange('first_name', 'last_name')
@@ -50,3 +49,5 @@ class EgovmaHrJob(models.Model):
     _inherit = 'hr.job'
 
     ar_name = fields.Char('المنصب')
+
+
