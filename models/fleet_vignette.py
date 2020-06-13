@@ -4,7 +4,6 @@ from odoo import fields, models, api
 
 class FleetList(models.Model):
     _name = 'egov_ma.hr.vignette'
-    #_inherit = 'fleet.vehicle'
 
     num_vingette = fields.Char('N° Vignette')
     amount = fields.Float('Montant')
@@ -15,4 +14,25 @@ class FleetList(models.Model):
     ('available', 'Disponible'),
     ('affeted', 'Affecté'),
     ('used', 'Utilisé'),
-    ], setting='State', readonly=True, default='available')
+    ], setting='Etat', readonly=True, default='available')
+
+
+class Egovmacarnetsvignettes(models.Model):
+    _name = 'egov_ma.carnets.vignettes'
+
+    num_carnet = fields.Char('N° Carnet')
+    state = fields.Selection([
+    ('scratch', 'Brouillon'),
+    ('in stock', 'En stock'),
+    ], setting='Etat', readonly=True, default='scratch')
+    creat_date = fields.Datetime('Date de création')
+    first_utilisation_date = fields.Datetime("Date début d'utilisation")
+    total_value = fields.Float('Valeur total')
+    type_carnet = fields.Many2one('egov_ma.carnets.type', 'Type')
+    vignette_id = fields.Many2many('egov_ma.hr.vignette', string='Vignette')
+
+
+class EgovmacarnetsvignettesType(models.Model):
+    _name = 'egov_ma.carnets.type'
+
+    name = fields.Char('Nom')

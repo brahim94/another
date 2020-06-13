@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id='vignette_view_form' model='ir.ui.view'>
+            <field name="name">vignette.view.form</field>
+            <field name="model">egov_ma.hr.vignette</field>
+            <field name="arch" type="xml">
+               <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                 <field name="image" widget='image' class="oe_avatar"
+                       options="{'size': [100, 100]}"/>
+
+                       <group col="2">
+                            <group>
+                                <field name="num_vingette" />
+                                <field name="amount"/>
+                            </group>
+                            <group>
+                                <field name="creat_date"/>
+                            </group>
+                        </group>
+                </sheet>
+                </form>
+            </field>
+</record>
+
+<record id="vignette_list_view_tree" model="ir.ui.view">
+        <field name="name">vignette.list.tree</field>
+        <field name="model">egov_ma.hr.vignette</field>
+        <field name="arch" type="xml">
+            <tree>
+            <field name="num_vingette"/>
+            <field name="amount"/>
+            <field name="creat_date"/>
+            </tree>
+        </field>
+    </record>
+
+<record id="action_egov_ma_hr_vignette" model="ir.actions.act_window">
+    <field name="name">Vignettes</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">egov_ma.hr.vignette</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+ <menuitem  name="Données de base" 
+            parent="fleet.menu_root"   
+            id="menu_view_hr_vignette_form"
+            sequence="99"
+            groups="base.group_user"/>
+
+<menuitem   action="action_egov_ma_hr_carnet_vignette"
+            parent="menu_view_hr_vignette_form"
+            id="vignette_list_menu_item_first" 
+            sequence="1"
+            groups="base.group_user"/>
+
+
+<record id='carnets_vignettes_view_form' model='ir.ui.view'>
+            <field name="name">carnets.vignettes.view.form</field>
+            <field name="model">egov_ma.carnets.vignettes</field>
+            <field name="arch" type="xml">
+               <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                       <group col="2">
+                            <group>
+                                <field name="num_carnet"/>
+                                <field name="creat_date"/>
+                                <field name="total_value"/>
+                            </group>
+                            <group>
+                                <field name="type_carnet"/>
+                                <field name="first_utilisation_date"/>
+                            </group>
+                        </group>
+                    <notebook position="inside">
+                        <page string="vignettes">
+                            <field name="vignette_id" nolabel="1">
+                                <tree>
+                                    <field name="num_vingette"/>
+                                    <field name="amount"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook> 
+                </sheet>
+                </form>
+            </field>
+</record>
+
+<record id="carnets_vignettes_list_view_tree" model="ir.ui.view">
+        <field name="name">carnets.vignettes.list.tree</field>
+        <field name="model">egov_ma.carnets.vignettes</field>
+        <field name="arch" type="xml">
+            <tree>
+            <field name="num_carnet"/>
+            <field name="creat_date"/>
+            <field name="total_value"/>
+            <field name="type_carnet"/>
+            <field name="first_utilisation_date"/>
+            </tree>
+        </field>
+    </record>
+
+<record id="action_egov_ma_hr_carnet_vignette" model="ir.actions.act_window">
+    <field name="name">Carnets vignettes</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">egov_ma.carnets.vignettes</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem   action="action_egov_ma_hr_vignette"
+            parent="menu_view_hr_vignette_form"
+            id="vignette_list_menu_item_two" 
+            sequence="2"
+            groups="base.group_user"/>
+            
+</odoo>

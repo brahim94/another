@@ -6,6 +6,9 @@
             <field name="model">event.event</field>
             <field name="inherit_id" ref="event.view_event_form"/>
             <field name="arch" type="xml">
+               <xpath expr="//field[@name='state']" position="before">
+                    <button name="print_attestation" string="Attestation décharge" type="object" class="oe_highlight"/>
+                </xpath>
                 <xpath expr="/form/sheet/group/group/field[@name='organizer_id']" position="replace">
                      <field name="organizer_id" invisible="1"/>
                      <field name="num_serie"/>
@@ -50,29 +53,73 @@
                 </xpath>
                 
                 <xpath expr="//page[@name='event_communication']" position="replace">
-                    <page string="Trajets de départ">
-                        <field name="trajets_ids" nolabel="1">
-                            <tree>
-                                <field name="name" invisible="1"/>
-                                <field name="starting_point_id"/>
-                                <field name="arrival_point_id"/>
-                                <field name="km_estimated"/>
-                                <field name="type"/>
-                                <field name="charge_auto"/>
-                            </tree>
-                        </field>
+                    <page string="Trajets">
+                    <group name="container_row_2">
+                                <group string="Trajets de départ" priority="1">
+                                    <field name="trajets_ids" nolabel="1">
+                                    <tree>
+                                        <field name="name" invisible="1"/>
+                                        <field name="starting_point_id"/>
+                                        <field name="arrival_point_id"/>
+                                        <field name="km_estimated"/>
+                                        <field name="type"/>
+                                        <field name="charge_auto"/>
+                                    </tree>
+                                </field>
+                                </group>
+                                <group string="Trajets de retour" priority="2">
+                                    <field name="trajets_idss" nolabel="1">
+                                    <tree>
+                                        <field name="name" invisible="1"/>
+                                        <field name="starting_point_id"/>
+                                        <field name="arrival_point_id"/>
+                                        <field name="km_estimated"/>
+                                        <field name="type"/>
+                                        <field name="charge_auto"/>
+                                    </tree>
+                                </field>
+                                </group>
+                            </group>
                     </page>
-                     <page string="Trajets de retour">
-                        <field name="trajets_idss" nolabel="1">
-                            <tree>
-                                <field name="name" invisible="1"/>
-                                <field name="starting_point_id"/>
-                                <field name="arrival_point_id"/>
-                                <field name="km_estimated"/>
-                                <field name="type"/>
-                                <field name="charge_auto"/>
-                            </tree>
-                        </field>
+                    <page string="vignettes">
+                    <group name="container_row_2">
+                                <group string="Vignettes livrées" priority="1">
+                                    <field name="vignette_ids" nolabel="1">
+                                    <tree>
+                                        <field name="num_vingette"/>
+                                        <field name="amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                    </field>
+                                    <group>
+                                        <field name="sum_vign_livr"/>
+                                        <field name="image_vign_livr" string="Image vignette livrée"/>
+                                    </group>
+                                </group>
+                                <group string="Vignettes récupérées" priority="2">
+                                    <field name="vignette_ids" nolabel="1">
+                                    <tree>
+                                        <field name="num_vingette"/>
+                                        <field name="amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                    </field>
+                                    <group>
+                                        <field name="sum_vign_recu"/>
+                                        <field name="image_vign_recp" string="Image vignette recupérée"/>
+                                    </group>
+                                </group>
+                        </group>
+                        </page>
+                        <page string="Fin de mission">
+                       <group name="container_row_2">
+                                <group priority="1">
+                                   <field name="releve_km"/>
+                                </group>
+                                <group  priority="2">
+                                    <field name="etat_id"/>
+                                </group>
+                            </group>
                     </page>
                 </xpath>
 

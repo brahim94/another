@@ -10,6 +10,18 @@ class EventEvent(models.Model):
     trajets_ids = fields.Many2many('egov_ma.event.trajets', 'event_trajets_rel', 'event_id', 'trajet_id', string="Trajet")
     num_serie  = fields.Char('N° de série')
     objet_txt = fields.Text('Objet')
+    vignette_ids = fields.Many2many('egov_ma.hr.vignette', string='Vignette')
+    etat_id = fields.Many2one('egov_ma.event.etat.vehicule', string='Etat')
+    releve_km = fields.Float('Relevé kilométrique')
+    sum_vign_livr = fields.Float('Total vignette livrée')
+    sum_vign_recu = fields.Float('Total vignette récupérée')
+    image_vign_livr = fields.Binary(attachment=True,
+              help="This field holds the image used as vignette livred.")
+    image_vign_recp = fields.Binary(attachment=True,
+              help="This field holds the image used as vignette recupired.")
+
+    def print_attestation(self):
+        return self.env.ref('egov_ma.action_report_decharge').report_action(self)
 
     @api.model
     def create(self, vals):
@@ -60,3 +72,11 @@ class EgovmaEventTrajetsRetour(models.Model):
     _inherit = 'event.event'
 
     trajets_idss = fields.Many2many('egov_ma.event.trajets', 'event_trajets_rel', 'event_id', 'trajet_id', string="Trajets Retour")
+
+
+class EgovmaEventEtatVehicule(models.Model):
+    _name = 'egov_ma.event.etat.vehicule'
+
+    name = fields.Selection([('Normal', 'Normal'), ('À réparer', 'À réparer'), ('Accidenté', 'Accidenté')], 'Etat de véhicule',
+                            default='Normal')
+  
