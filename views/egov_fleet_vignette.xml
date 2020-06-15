@@ -52,7 +52,7 @@
             sequence="99"
             groups="base.group_user"/>
 
-<menuitem   action="action_egov_ma_hr_carnet_vignette"
+<menuitem   action="action_egov_ma_hr_vignette"
             parent="menu_view_hr_vignette_form"
             id="vignette_list_menu_item_first" 
             sequence="1"

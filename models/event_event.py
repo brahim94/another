@@ -13,12 +13,28 @@ class EventEvent(models.Model):
     vignette_ids = fields.Many2many('egov_ma.hr.vignette', string='Vignette')
     etat_id = fields.Many2one('egov_ma.event.etat.vehicule', string='Etat')
     releve_km = fields.Float('Relevé kilométrique')
-    sum_vign_livr = fields.Float('Total vignette livrée')
+    sum_vign_livr = fields.Float(computed="_amount_total", string='Total vignette livrée')
     sum_vign_recu = fields.Float('Total vignette récupérée')
     image_vign_livr = fields.Binary(attachment=True,
               help="This field holds the image used as vignette livred.")
     image_vign_recp = fields.Binary(attachment=True,
               help="This field holds the image used as vignette recupired.")
+
+    #def get_total(self, cr, uid, ids, field_name, arg, context):
+        #res = {}
+        #total = 0
+        #curat = self.browse(cr, uid, ids, context=context)
+        #for cura in curat:
+            #total += cura.curativedigit
+            #res[cura.id] = total
+        #return res
+
+    def _amount_total(self):
+        for rec in self:
+            total = sum(rec.vignette_ids.mapped('amount')) if rec.vignette_ids else 0
+            rec.sum_vign_livr = total
+    
+    total_estim_km_arriv = fields.Float(computed="_amount_total", sting="Total km estimé")
 
     def print_attestation(self):
         return self.env.ref('egov_ma.action_report_decharge').report_action(self)

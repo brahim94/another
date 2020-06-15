@@ -66,6 +66,9 @@
                                         <field name="charge_auto"/>
                                     </tree>
                                 </field>
+                                <group>
+                                    <field name="total_estim_km_arriv" string="Totak KM Estimé depart"/>
+                                </group>
                                 </group>
                                 <group string="Trajets de retour" priority="2">
                                     <field name="trajets_idss" nolabel="1">
